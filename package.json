@@ -1,0 +1,37 @@
+{
+  "name": "mongo-images",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MongoDB docker container images",
+  "bugs": "https://github.com/rfprod/mongo/issues",
+  "repository": "https://github.com/rfprod/mongo",
+  "license": "MIT",
+  "author": "rfprod <connect@rfprod.tk> (https://github.com/rfprod)",
+  "scripts": {
+    "docker:build:mongo": "sudo docker build -t portaldb -f .docker/mongo.Dockerfile .",
+    "docker:debug:mongo": "echo \"CONTAINER_ID environment variable value is $CONTAINER_ID\" & sudo docker exec -it $CONTAINER_ID bash",
+    "docker:run:mongo": "sudo docker run --rm --name portaldb -it -p 127.0.0.1:27017:27017 portaldb",
+    "postinstall": "husky install && npx sort-json package.json && npx sort-package-json"
+  },
+  "config": {
+    "commitizen": {
+      "maxHeaderWidth": 80,
+      "maxLineWidth": 100,
+      "minHeaderWidth": 16,
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
+    "commitizen": "4.2.4",
+    "husky": "7.0.2",
+    "prettier": "2.4.0",
+    "sort-json": "2.0.0",
+    "sort-package-json": "1.51.0"
+  },
+  "engines": {
+    "node": ">=14.17.6",
+    "npm": ">=6.14.8"
+  }
+}

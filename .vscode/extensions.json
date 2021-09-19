@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "pkief.material-icon-theme",
+    "atishay-jain.all-autocomplete",
+    "sadesyllas.vscode-workspace-switcher",
+    "editorconfig.editorconfig",
+    "shd101wyy.markdown-preview-enhanced",
+    "ms-azuretools.vscode-docker",
+    "xaver.clang-format",
+    "foxundermoon.shell-format",
+    "timonwong.shellcheck",
+    "esbenp.prettier-vscode"
+  ]
+}
