@@ -6,10 +6,6 @@ MongoDB docker images.
 
 In order to run own copy of the project one must fulfill the following requirements.
 
-## Requirements
-
-In order to run own copy of the project one must fulfill the following requirements.
-
 ### Supported operating systems
 
 - [Debian based Linux](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
