@@ -7,6 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
   MONGO_INITDB_ROOT_USERNAME="root"
 # Copy entrypoint script.
 COPY tools/shell/mongo-docker-entrypoint.sh /
+# Copy initialization scripts.
+COPY dist/docker-entrypoint-initdb.d/src/mongo-init/init-accounts.js /docker-entrypoint-initdb.d
 # Install dependencies and configure directories.
 RUN apt-get update ; \
     apt-get upgrade -y --no-install-recommends ; \

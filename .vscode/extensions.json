@@ -2,13 +2,21 @@
   "recommendations": [
     "pkief.material-icon-theme",
     "atishay-jain.all-autocomplete",
+    "pmneo.tsimporter",
+    "christian-kohler.path-intellisense",
+    "metatype.copilot-vscode",
     "sadesyllas.vscode-workspace-switcher",
     "editorconfig.editorconfig",
+    "mikestead.dotenv",
     "shd101wyy.markdown-preview-enhanced",
+    "eg2.vscode-npm-script",
     "ms-azuretools.vscode-docker",
-    "xaver.clang-format",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-tslint-plugin",
     "foxundermoon.shell-format",
     "timonwong.shellcheck",
+    "stepsize.tech-debt-tracker",
+    "stylelint.vscode-stylelint",
     "esbenp.prettier-vscode"
   ]
 }
