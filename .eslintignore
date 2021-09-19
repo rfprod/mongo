@@ -1,0 +1,15 @@
+**/*.*
+!**/*.ts
+!**/*.js
+**/*.min.js
+node_modules/*
+**/node_modules/*
+*/assets/*
+.vscode/
+.github/
+.devops/
+documentation/
+dist/
+coverage/
+changelog/
+**/generated/**
