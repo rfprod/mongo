@@ -3,9 +3,9 @@
  */
 (async function () {
   // eslint-disable-next-line no-undef -- this script has global context because it is executed in mongo shell
-  var mongoClient = new Mongo();
+  const mongoClient = new Mongo();
 
-  var adminDb = mongoClient.getDB('admin');
+  const adminDb = mongoClient.getDB('admin');
 
   async function init() {
     await adminDb.createUser({
@@ -20,7 +20,7 @@
       roles: [{ role: 'userAdminAnyDatabase', db: 'admin' }],
     });
 
-    var portalDb = mongoClient.getDB('portal');
+    const portalDb = mongoClient.getDB('portal');
     await portalDb.createCollection('collectionOne', { capped: false });
     await portalDb.createCollection('collectionTwo', { capped: false });
   }
