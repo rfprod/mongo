@@ -8,12 +8,8 @@
   "license": "MIT",
   "author": "rfprod <connect@rfprod.tk> (https://github.com/rfprod)",
   "scripts": {
-    "build": "tsc -p ./src/tsconfig.app.json",
-    "predocker:build:mongo": "yarn build",
     "docker:build:mongo": "sudo docker build -t portaldb -f .docker/mongo.Dockerfile .",
-    "predocker:debug:mongo": "yarn build",
     "docker:debug:mongo": "echo \"CONTAINER_ID environment variable value is $CONTAINER_ID\" & sudo docker exec -it $CONTAINER_ID bash",
-    "predocker:run:mongo": "yarn build",
     "docker:run:mongo": "sudo docker run --rm --name portaldb -it -p 127.0.0.1:27017:27017 portaldb",
     "lint": "eslint tools/",
     "lint:fix": "eslint tools/ --fix",
