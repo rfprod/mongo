@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "outDir": "../dist/docker-entrypoint-initdb.d",
-    "module": "commonjs"
-  },
-  "extends": "./tsconfig.json",
-  "files": ["mongo-init/init-accounts.ts"]
-}

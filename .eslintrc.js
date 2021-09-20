@@ -1,9 +1,4 @@
-const { join } = require('path');
-
 /**
- * Roadmap typescript-eslint
- * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/ROADMAP.md
- *
  * ESLint Rules: https://eslint.org/docs/rules/
  */
 module.exports = {
@@ -46,11 +41,11 @@ module.exports = {
       '!no-labels',
     ],
     'arrow-parens': ['error', 'as-needed'],
-    'brace-style': 'off', // handled by @typescript-eslint rule
-    'comma-spacing': 'off', // handled by @typescript-eslint rule
+    'brace-style': 'off', // handled by prettier
+    'comma-spacing': 'off', // handled by prettier
     'constructor-super': 'error',
     complexity: ['error', 10],
-    'default-param-last': 'off', // handled by @typescript-eslint rule
+    'default-param-last': 'error',
     eqeqeq: 'error',
     'func-name-matching': ['error', 'always'],
     'guard-for-in': 'error',
@@ -88,12 +83,12 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'no-else-return': 'error',
     'no-empty': 'error',
-    'no-empty-function': 'off', // handled by typescript-eslint rule
+    'no-empty-function': 'error',
     'no-fallthrough': 'error',
     'no-eval': 'error',
     'no-extend-native': 'error',
-    'no-extra-parens': 'off', // handled by prettier
-    'no-extra-boolean-cast': 'off', // conflicts with strict boolean expressions
+    'no-extra-parens': 'error',
+    'no-extra-boolean-cast': 'error',
     'no-floating-decimal': 'error',
     'no-implicit-coercion': 'error',
     'no-invalid-this': 'off', // keep off
@@ -101,7 +96,15 @@ module.exports = {
     'no-lone-blocks': 'error',
     'no-lonely-if': 'error',
     'no-loop-func': 'error',
-    'no-magic-numbers': 'off', // handled by typescript-eslint rule
+    'no-magic-numbers': [
+      'error',
+      {
+        ignoreArrayIndexes: true,
+        ignoreDefaultValues: true,
+        enforceConst: true,
+        ignore: [-1, 0, 1],
+      },
+    ],
     'no-new-wrappers': 'error',
     'no-param-reassign': 'error',
     'no-plusplus': 'error',
@@ -110,10 +113,10 @@ module.exports = {
     'no-return-await': 'error',
     'no-self-compare': 'error',
     'no-sequences': 'error',
-    'no-shadow': 'off', // handled by typescript-eslint rule
+    'no-shadow': 'error',
     'no-shadow-restricted-names': 'error',
     'no-template-curly-in-string': 'error',
-    'no-throw-literal': 'off', // handled by typescript-eslint rule
+    'no-throw-literal': 'error',
     'no-undefined': 'error',
     'no-unmodified-loop-condition': 'error',
     'no-unreachable': 'error',
@@ -128,24 +131,14 @@ module.exports = {
     'prefer-spread': 'error',
     'prefer-promise-reject-errors': 'error',
     'prettier/prettier': 'error',
-    quotes: 'off', // handled by typescript eslint rule
+    quotes: ['error', 'single', { avoidEscape: true }],
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'sort-imports': 'off', // handled by simple-import-sort/sort
     radix: 'error',
     'require-atomic-updates': 'error',
-    'require-await': 'off', // handled by typescript-eslint rule
-    'require-jsdoc': [
-      'off', // TODO: turn on
-      {
-        require: {
-          FunctionDeclaration: false,
-          MethodDefinition: false,
-          ClassDeclaration: true,
-          ArrowFunctionExpression: false,
-        },
-      },
-    ],
+    'require-await': 'error',
+    'require-jsdoc': 'off', // keep off
     yoda: ['error', 'never'],
   },
 
@@ -169,269 +162,22 @@ module.exports = {
       ],
     },
     {
-      files: ['**/*.ts'],
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-        project: [join(__dirname, './tsconfig.json')],
-        createDefaultProgram: true,
-      },
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/eslint-recommended',
-        'plugin:@typescript-eslint/recommended',
-        'prettier',
-        'plugin:eslint-comments/recommended',
-      ],
-      plugins: [
-        'prettier',
-        '@typescript-eslint', // https://github.com/typescript-eslint/typescript-eslint
-        'simple-import-sort', // https://github.com/lydell/eslint-plugin-simple-import-sort
-        'eslint-comments', // https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/
-        'rxjs', // https://github.com/cartant/eslint-plugin-rxjs
-      ],
+      files: '**/init.js',
       rules: {
-        '@typescript-eslint/await-thenable': 'error',
-        '@typescript-eslint/ban-ts-comment': 'error',
-        '@typescript-eslint/ban-types': [
+        'eslint-comments/no-restricted-disable': [
           'error',
-          {
-            types: {
-              Object: 'Avoid using the `Object` type. Did you mean `object`?',
-              Boolean: 'Avoid using the `Boolean` type. Did you mean `boolean`?',
-              Number: 'Avoid using the `Number` type. Did you mean `number`?',
-              String: 'Avoid using the `String` type. Did you mean `string`?',
-              Symbol: 'Avoid using the `Symbol` type. Did you mean `symbol`?',
-            },
-          },
+          '*',
+          '!no-console',
+          '!prettier',
+          '!no-labels',
+          '!no-undef',
         ],
-        '@typescript-eslint/brace-style': ['error'],
-        '@typescript-eslint/comma-spacing': ['error'],
-        '@typescript-eslint/consistent-type-definitions': 'error',
-        '@typescript-eslint/default-param-last': ['error'],
-        '@typescript-eslint/explicit-function-return-type': 'off', // keep off
-        '@typescript-eslint/explicit-module-boundary-types': 'off', // keep off
-        '@typescript-eslint/explicit-member-accessibility': [
-          'error',
-          { ignoredMethodNames: ['constructor'] },
-        ],
-        '@typescript-eslint/lines-between-class-members': [
-          'error',
-          'always',
-          { exceptAfterOverload: true },
-        ],
-        '@typescript-eslint/member-ordering': [
-          'error',
-          { default: ['static-field', 'instance-field', 'static-method', 'instance-method'] },
-        ],
-        '@typescript-eslint/naming-convention': [
-          'error', // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
-          {
-            selector: 'default',
-            format: ['camelCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'variable',
-            format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'parameter',
-            format: ['camelCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'objectLiteralProperty',
-            format: ['camelCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'property',
-            format: ['camelCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'function',
-            format: ['camelCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'enum',
-            format: ['UPPER_CASE'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'enumMember',
-            format: ['UPPER_CASE'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'memberLike',
-            modifiers: ['private'],
-            format: ['camelCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'typeAlias',
-            prefix: ['T'],
-            format: ['StrictPascalCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'typeParameter',
-            format: ['StrictPascalCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'interface',
-            prefix: ['I'],
-            format: ['StrictPascalCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-          {
-            selector: 'class',
-            prefix: ['App'],
-            format: ['StrictPascalCase'],
-            leadingUnderscore: 'forbid',
-            trailingUnderscore: 'forbid',
-          },
-        ],
-        '@typescript-eslint/no-dynamic-delete': 'error',
-        '@typescript-eslint/no-empty-function': [
-          'error',
-          {
-            allow: ['constructors'],
-          },
-        ],
-        '@typescript-eslint/no-empty-interface': 'error',
-        '@typescript-eslint/no-extraneous-class': [
-          'error',
-          { allowEmpty: true, allowStaticOnly: true, allowWithDecorator: true },
-        ],
-        '@typescript-eslint/no-floating-promises': [
-          'error',
-          {
-            ignoreVoid: true, // setting to false leads to messy code where it's reasonable to use void
-          },
-        ],
-        '@typescript-eslint/no-inferrable-types': 'error',
-        '@typescript-eslint/no-magic-numbers': [
-          'error',
-          {
-            ignoreNumericLiteralTypes: true,
-            ignoreReadonlyClassProperties: true,
-            ignore: [-1, 0, 1], // ignore -1, and binary
-            ignoreEnums: true, // ignore enumerators so that numeric values can be grouped via enums instead of constants,
-          },
-        ],
-        '@typescript-eslint/no-misused-new': 'error',
-        '@typescript-eslint/no-misused-promises': [
-          'error',
-          { checksVoidReturn: false, checksConditionals: true },
-        ],
-        '@typescript-eslint/no-non-null-assertion': 'error',
-        '@typescript-eslint/no-for-in-array': 'error',
-        '@typescript-eslint/no-shadow': 'error',
-        '@typescript-eslint/no-this-alias': 'error',
-        '@typescript-eslint/no-throw-literal': 'error',
-        '@typescript-eslint/no-unnecessary-type-arguments': 'error',
-        '@typescript-eslint/no-unnecessary-type-assertion': ['error', { typesToIgnore: [''] }],
-        '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
-        '@typescript-eslint/no-unsafe-member-access': 'error',
-        '@typescript-eslint/no-unused-vars': [
-          'error',
-          { vars: 'all', args: 'none', ignoreRestSiblings: false },
-        ],
-        '@typescript-eslint/no-require-imports': 'error',
-        '@typescript-eslint/no-use-before-define': [
-          'error',
-          {
-            functions: false,
-            classes: false, // decorator options become unusable if set to true
-          },
-        ],
-        '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],
-        '@typescript-eslint/no-var-requires': 'error',
-        '@typescript-eslint/prefer-function-type': 'error',
-        '@typescript-eslint/prefer-readonly': ['error'],
-        '@typescript-eslint/prefer-includes': 'error',
-        '@typescript-eslint/prefer-readonly-parameter-types': [
-          'off', // TODO: revise if this can be turned on, this rule seems to have buggy behavior
-          {
-            checkParameterProperties: false,
-          },
-        ],
-        '@typescript-eslint/prefer-optional-chain': 'error',
-        '@typescript-eslint/prefer-nullish-coalescing': [
-          'error',
-          { ignoreConditionalTests: true, ignoreMixedLogicalExpressions: true },
-        ],
-        '@typescript-eslint/promise-function-async': 'off', // keep off
-        '@typescript-eslint/require-await': 'off', // keep off
-        '@typescript-eslint/restrict-plus-operands': 'error',
-        '@typescript-eslint/strict-boolean-expressions': 'error',
-        '@typescript-eslint/triple-slash-reference': [
-          'error',
-          { path: 'never', types: 'never', lib: 'never' },
-        ],
-        '@typescript-eslint/unbound-method': [
-          'off', // keep of for now
-          { ignoreStatic: true },
-        ],
-        '@typescript-eslint/quotes': [
-          'error',
-          'single',
-          { avoidEscape: true, allowTemplateLiterals: true },
-        ],
-        'rxjs/ban-observables': 'off', // keep off
-        'rxjs/ban-operators': 'off', // keep off
-        'rxjs/no-async-subscribe': 'error',
-        'rxjs/no-compat': 'error',
-        'rxjs/no-create': 'error',
-        'rxjs/no-ignored-error': 'off', // keep of for now; turn it on later maybe
-        'rxjs/no-ignored-observable': 'error',
-        'rxjs/no-ignored-subscribe': 'off', // keep off
-        'rxjs/no-ignored-subscription': 'error',
-        'rxjs/no-internal': 'error',
-        'rxjs/no-nested-subscribe': 'error',
-        'rxjs/no-subclass': 'error',
-        'rxjs/throw-error': 'error',
-        'rxjs/no-tap': 'off', // keep off
-        'rxjs/no-exposed-subjects': 'error',
-        'rxjs/no-subject-unsubscribe': 'error',
-        'rxjs/suffix-subjects': [
-          'error',
-          {
-            parameters: true,
-            properties: true,
-            suffix: 'Subject',
-            types: {
-              '^EventEmitter$': false,
-            },
-            variables: true,
-          },
-        ],
-        'rxjs/no-topromise': 'error',
-        'rxjs/no-redundant-notify': 'error',
-        'rxjs/no-unsafe-catch': 'error',
-        'rxjs/no-unsafe-subject-next': 'error',
-        'rxjs/no-unsafe-switchmap': 'error',
-        'rxjs/no-unsafe-takeuntil': 'error',
-        'rxjs/no-unbound-methods': 'error',
+      },
+    },
+    {
+      files: ['**/.eslintrc.js', '**/commitlint.*.js'],
+      rules: {
+        'no-magic-numbers': 'off',
       },
     },
   ],
