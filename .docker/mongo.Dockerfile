@@ -12,7 +12,7 @@ COPY tools/js/init.js /docker-entrypoint-initdb.d/init.js
 RUN apt-get update ; \
     apt-get upgrade -y --no-install-recommends ; \
     apt-get install -y --no-install-recommends apt-utils ; \
-    apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl gnupg2 numactl ; \
+    apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl gnupg2 ; \
     apt-get clean ; \
     apt-get autoclean ; \
     apt-get autoremove ; \
