@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "../dist/out-tsc",
+    "lib": ["es2017", "dom"],
+    "allowJs": true,
+    "checkJs": true,
+    "types": ["node", "jest"]
+  },
+  "extends": "./tsconfig.json",
+  "include": ["**/*.ts"]
+}
