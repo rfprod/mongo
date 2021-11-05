@@ -6,7 +6,7 @@
 
 Have you read the [code of conduct](CODE_OF_CONDUCT.md)?
 
-Check out the [existing issues](https://github.com/rfprod/mongo/issues) and see what [types of contributions](#types-of-contributions) are accepted.
+Check out the [existing issues](https://github.com/rfprod/mongo/issues) and see what types of contributions are accepted.
 
 ### Don't see your issue? Open one
 
@@ -15,19 +15,6 @@ If you spot something new, open an issue using a [template](https://github.com/r
 ### Keep contributing
 
 Now that you're a part of the community, you can keep participating in many ways.
-
-**Learn more about contributing:**
-
-- [ Types of contributions](#types-of-contributions)
-  - [:memo: Issues](#memo-issues)
-  - [:hammer_and_wrench: Pull requests](#hammer_and_wrench-pull-requests)
-- [Starting with an issue](#starting-with-an-issue)
-  - [:label: Labels](#label-labels)
-- [Opening a pull request](#opening-a-pull-request)
-- [Reviewing](#reviewing)
-  - [Self review](#self-review)
-  - [Suggested changes](#suggested-changes)
-- [Working in the repository](#working-in-the-repository)
 
 ## Types of contributions
 
