@@ -1,12 +1,32 @@
+import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
 import { finalize, forkJoin, from, map, of, switchMap } from 'rxjs';
 
 import { createCollections } from './collections';
 import { createUsers } from './users';
 
-const uri = ''; // TODO: read from .env
+/**
+ * Load environment variables.
+ */
+dotenv.config();
 
-const dbName = ''; // TODO: read from .env
+const uri = process.env.DB_CONNECTION_STRING;
+
+if (typeof uri === 'undefined') {
+  // eslint-disable-next-line no-console -- print error handling instructions in the terminal
+  console.error(
+    'Please verify the .env file in the project root has the DB_CONNECTION_STRING variable set.',
+  );
+  process.exit(1);
+}
+
+const dbName = process.env.DB_NAME;
+
+if (typeof dbName === 'undefined') {
+  // eslint-disable-next-line no-console -- print error handling instructions in the terminal
+  console.error('Please verify the .env file in the project root has the DB_NAME variable set.');
+  process.exit(1);
+}
 
 void of(new MongoClient(uri, { ssl: true, keepAlive: true }))
   .pipe(

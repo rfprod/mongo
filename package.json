@@ -13,6 +13,7 @@
     "docker:run:mongo": "sudo docker run --rm --name portaldb -it -p 127.0.0.1:27017:27017 portaldb",
     "lint": "eslint tools/",
     "lint:fix": "eslint tools/ --fix",
+    "mongo:init": "ts-node -P tools/tsconfig.tools.json tools/ts/mongo/init.ts",
     "postinstall": "husky install && npx sort-json package.json && npx sort-package-json"
   },
   "config": {
