@@ -2,6 +2,15 @@
 
 MongoDB docker images.
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+## Workflows
+
+| Trigger                            | Badge                                                                                                                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PR open event (destination: trunk) | [![pr-validation](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml)       |
+| CodeQL analysis                    | [![codeql-alalysis](https://github.com/rfprod/mongo/actions/workflows/codeql-alalysis.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/codeql-alalysis.yml) |
+
 ## Requirements
 
 In order to run own copy of the project one must fulfill the following requirements.
