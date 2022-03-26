@@ -9,7 +9,7 @@ MongoDB docker images.
 | Trigger                            | Badge                                                                                                                                                                        |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PR open event (destination: trunk) | [![pr-validation](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml)       |
-| CodeQL analysis                    | [![codeql-alalysis](https://github.com/rfprod/mongo/actions/workflows/codeql-alalysis.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/codeql-alalysis.yml) |
+| CodeQL analysis                    | [![codeql-analysis](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml) |
 
 ## Requirements
 
