@@ -1,4 +1,4 @@
-# Secutiry
+# Security
 
 ## Dependencies audit
 
