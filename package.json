@@ -1,6 +1,6 @@
 {
   "name": "mongo-images",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "MongoDB docker container images",
   "bugs": "https://github.com/rfprod/mongo/issues",
@@ -13,8 +13,11 @@
     "docker:debug:mongo": "echo \"CONTAINER_ID environment variable value is $CONTAINER_ID\" & sudo docker exec -it $CONTAINER_ID bash",
     "docker:run:mongo": "sudo docker run --rm --name webappdb -it -p 127.0.0.1:27017:27017 webappdb",
     "postinstall": "husky install && npx sort-json package.json && npx sort-package-json",
+    "install:shellcheck:linux": "sudo apt install shellcheck",
+    "install:shellcheck:osx": "brew install shellcheck",
     "lint": "eslint tools/",
     "lint:fix": "eslint tools/ --fix",
+    "lint:shell": "shellcheck tools/shell/*.sh",
     "mongo:init": "ts-node -P tools/tsconfig.tools.json tools/ts/mongo/init.ts",
     "workspace:help": "npx ts-node -P ./tools/tsconfig.tools.json ./tools/ts/package-commands.ts"
   },

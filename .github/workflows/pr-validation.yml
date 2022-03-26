@@ -27,13 +27,42 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - name: Detect changes
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            tools:
+              - 'tools/js/**'
+              - 'tools/ts/**'
+              - 'tools/*.json'
+              - 'tsconfig*'
+              - '.eslint*'
+              - '.prettier*'
+            dependencies:
+              - 'package.json'
+              - 'yarn.lock'
+            shelltools:
+              - 'tools/shell/**'
+
+      - name: Don't save Bash session history
+        run: unset HISTFILE
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install project dependencies
+        if: ${{ steps.changes.outputs.tools == 'true' || steps.changes.outputs.dependencies == 'true' }}
         run: yarn install --frozen-lockfile
 
-      - name: Lint
+      - name: Lint tools (eslint)
+        if: ${{ steps.changes.outputs.tools == 'true' || steps.changes.outputs.dependencies == 'true' }}
         run: yarn lint
+
+      - name: Lint shell
+        if: steps.changes.outputs.shelltools == 'true'
+        run: |
+          sudo apt install shellcheck
+          yarn lint:shell
