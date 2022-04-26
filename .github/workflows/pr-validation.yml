@@ -55,8 +55,13 @@ jobs:
           check-latest: true
 
       - name: Install project dependencies
-        if: ${{ steps.changes.outputs.tools == 'true' || steps.changes.outputs.dependencies == 'true' }}
         run: yarn install --frozen-lockfile
+
+      - name: Validate the commit messages
+        run: |
+          git checkout -b premerge
+          git fetch origin main:main
+          npx --no-install commitlint --from main
 
       - name: Lint tools (eslint)
         if: ${{ steps.changes.outputs.tools == 'true' || steps.changes.outputs.dependencies == 'true' }}

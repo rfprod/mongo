@@ -24,7 +24,6 @@ In order to run own copy of the project one must fulfill the following requireme
 ### Core dependencies
 
 - [Node.js](https://nodejs.org/)
-- [NPM](https://nodejs.org/)
 - [Yarn](https://yarnpkg.com/) - preferred package manager
 - [Git](https://git-scm.com/)
 - [Bash 5](https://www.gnu.org/software/bash/)
