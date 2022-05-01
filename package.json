@@ -1,8 +1,8 @@
 {
   "name": "mongo-images",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "private": true,
-  "description": "MongoDB docker container images",
+  "description": "MongoDB docker container image with automation utilities.",
   "bugs": "https://github.com/rfprod/mongo/issues",
   "repository": "https://github.com/rfprod/mongo",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "docker:build:mongo": "sudo docker build -t webappdb -f .docker/mongo.Dockerfile .",
     "docker:debug:mongo": "echo \"CONTAINER_ID environment variable value is $CONTAINER_ID\" & sudo docker exec -it $CONTAINER_ID bash",
     "docker:run:mongo": "sudo docker run --rm --name webappdb -it -p 127.0.0.1:27017:27017 webappdb",
+    "image:encode": "npx ts-node -P ./tools/tsconfig.tools.json ./tools/ts/image-encoder/encode-image.ts",
     "postinstall": "husky install && npx sort-json package.json && npx sort-package-json",
     "install:shellcheck:linux": "sudo apt install shellcheck",
     "install:shellcheck:osx": "brew install shellcheck",
@@ -30,9 +31,9 @@
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "16.2.3",
-    "@commitlint/config-conventional": "16.2.1",
-    "@types/node": "17.0.29",
+    "@commitlint/cli": "16.2.4",
+    "@commitlint/config-conventional": "16.2.4",
+    "@types/node": "17.0.30",
     "@typescript-eslint/eslint-plugin": "5.21.0",
     "@typescript-eslint/parser": "5.21.0",
     "commitizen": "4.2.4",
@@ -49,13 +50,13 @@
     "prettier": "2.6.2",
     "rxjs": "7.5.5",
     "sort-json": "2.0.1",
-    "sort-package-json": "1.55.0",
+    "sort-package-json": "1.56.1",
     "ts-node": "10.7.0",
     "tslib": "2.4.0",
-    "typescript": "4.6.3"
+    "typescript": "4.6.4"
   },
   "engines": {
-    "node": ">=16.14.1",
-    "npm": ">=8.5.5"
+    "node": ">=16.15.0",
+    "npm": ">=8.8.0"
   }
 }
