@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { argv } from 'yargs';
 
-import { COLORS } from './colors';
+import { COLORS } from './utils/colors';
 
 /**
  * @name cwd

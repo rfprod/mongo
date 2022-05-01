@@ -1,32 +1,56 @@
 # Mongo
 
-MongoDB docker images.
+MongoDB docker container image with automation utilities.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ## Workflows
 
-| Trigger                            | Badge                                                                                                                                                                        |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PR open event (destination: trunk) | [![pr-validation](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml)       |
-| CodeQL analysis                    | [![codeql-analysis](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml) |
+| Info                                                       | Trigger                            | Badge                                                                                                                                                                        |
+| ---------------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [:information_source:](# 'Quality gates.')                 | PR open event (destination: trunk) | [![pr-validation](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml)       |
+| [:information_source:](# 'Source code security scanning.') | CodeQL analysis                    | [![codeql-analysis](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml) |
 
 ## Requirements
 
 In order to run own copy of the project one must fulfill the following requirements.
 
-### Supported operating systems
+### Supported operating system
 
-- [Debian based Linux](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
-- [OSX](https://en.wikipedia.org/wiki/MacOS)
-- [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows)
+- :trophy: [Debian based Linux](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based) - `recommended`
+  - check out [this dev setup instructions](https://github.com/rfprod/wdsdu) to facilitate setting up the dev environment;
+  - one will have to install MongoDB oneself;
+  - given that the dev environment is set up, the following commands should install everything needed to work with the project;
+    ```bash
+    yarn install:shellcheck:linux && yarn install
+    ```
+- :ok: [OSX](https://en.wikipedia.org/wiki/MacOS) - `should work due to the similarities with Linux`
+  - one will have to figure out oneself how to set up the dev environment;
+  - one will have to install MongoDB oneself;
+  - given that the dev environment is set up, the following commands should install everything needed to work with the project;
+    ```bash
+    yarn install:shellcheck:linux && yarn install
+    ```
+- :no_entry_sign: [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) - `should work, but no guarantees`
+  - one will have to figure out oneself how to set up the dev environment;
+  - one will have to install MongoDB oneself;
+  - given that the dev environment is set up, the following commands should be used to install `shellcheck` via PowerShell;
+    ```powershell
+    iwr -useb get.scoop.sh | iex
+    scoop install shellcheck
+    ```
+  - recommended shell: [Git for Windows](https://gitforwindows.org/) > `Git BASH`.
 
 ### Core dependencies
 
-- [Node.js](https://nodejs.org/)
-- [Yarn](https://yarnpkg.com/) - preferred package manager
-- [Git](https://git-scm.com/)
 - [Bash 5](https://www.gnu.org/software/bash/)
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/)
+- [Git](https://git-scm.com/)
+
+### Recommended IDE
+
+- [VSCode](https://code.visualstudio.com/)
 
 ## Package scripts reference
 
@@ -63,3 +87,7 @@ git cz
 ### Development methodology
 
 - [Trunk based development](https://trunkbaseddevelopment.com/)
+
+## Disclaimers
+
+All logos are the property of their respective owners.

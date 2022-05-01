@@ -1,3 +1,6 @@
+/**
+ * Color definitions.
+ */
 export enum COLORS {
   DEFAULT = '\x1b[0m',
   BLACK = '\x1b[30m',

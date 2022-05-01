@@ -3,6 +3,7 @@ import { MongoClient } from 'mongodb';
 import { finalize, forkJoin, from, map, of, switchMap } from 'rxjs';
 
 import { createCollections } from './collections';
+import { operators } from './operators';
 import { createUsers } from './users';
 
 /**
@@ -10,33 +11,45 @@ import { createUsers } from './users';
  */
 dotenv.config();
 
+/**
+ * Database uri (connection string).
+ */
 const uri = process.env.DB_CONNECTION_STRING;
 
 if (typeof uri === 'undefined') {
-  // eslint-disable-next-line no-console -- print error handling instructions in the terminal
-  console.error(
+  const error = new Error(
     'Please verify the .env file in the project root has the DB_CONNECTION_STRING variable set.',
   );
+  operators.processError(error);
   process.exit(1);
 }
 
+/**
+ * Database name.
+ */
 const dbName = process.env.DB_NAME;
 
 if (typeof dbName === 'undefined') {
-  // eslint-disable-next-line no-console -- print error handling instructions in the terminal
-  console.error('Please verify the .env file in the project root has the DB_NAME variable set.');
+  const error = new Error(
+    'Please verify the .env file in the project root has the DB_NAME variable set.',
+  );
+  operators.processError(error);
   process.exit(1);
 }
 
-void of(new MongoClient(uri, { ssl: true, keepAlive: true }))
+/**
+ * Don't use SSL for the local database instance.
+ */
+const ssl = !uri.includes('127.0.0.1');
+
+void of(new MongoClient(uri, { ssl, keepAlive: true }))
   .pipe(
     switchMap(client => client.connect()),
     map(client => ({ client, db: client.db(dbName) })),
     switchMap(({ client, db }) =>
       from(db.command({ ping: 1 })).pipe(
         map(result => {
-          // eslint-disable-next-line no-console -- print connection check result
-          console.log('Connection check', result);
+          operators.logResult(result, 'Connection check');
           return { client, db };
         }),
       ),
