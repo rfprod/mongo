@@ -70,6 +70,28 @@ Provided all dependencies are installed, and [commitizen cli is installed as a g
 git cz
 ```
 
+## Environment variables setup
+
+Manualy create the `.env` file in the project root with the following content
+
+```bash
+DB_NAME="admin"
+DB_CONNECTION_STRING="mongodb://admin:password@127.0.0.1:27017" # replace the default values of the login and the password as needed
+DB_CONNECTION_STRING_REMOTE="mongodb://admin:password@127.0.0.1:27017" # put a value here after deploying the database container
+```
+
+or execute the following command to create the `.env` file with the default values in the project root
+
+```bash
+yarn env:create
+```
+
+To set arbitrary values of the variable in the .env file, pass the variables via arguments, see help
+
+```bash
+yarn env:help
+```
+
 ## Technologies Reference
 
 ### Container engine

@@ -4,8 +4,8 @@ import { concat, from } from 'rxjs';
 import { operators } from './operators';
 
 /**
- * Creates the database collections.
- * @param db the database reference
+ * Creates the application database collections.
+ * @param db the application database reference
  * @returns execution stream
  */
 export const createCollections = (db: Db) => {
