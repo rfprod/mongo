@@ -38,6 +38,9 @@ const processStreamError = (exit = false) =>
     );
   });
 
+/**
+ * The database operator factories.
+ */
 export const operators = {
   logResult,
   processError,
