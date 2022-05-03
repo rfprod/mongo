@@ -21,7 +21,7 @@
     "install:shellcheck:osx": "brew install shellcheck",
     "lint": "eslint tools/",
     "lint:fix": "eslint tools/ --fix",
-    "lint:shell": "shellcheck tools/shell/*.sh",
+    "lint:shell": "shellcheck tools/shell/*.sh tools/shell/utils/*.sh",
     "mongo:dump": "bash tools/shell/mongo.sh dump",
     "mongo:export": "bash tools/shell/mongo.sh export",
     "mongo:import": "bash tools/shell/mongo.sh import",
