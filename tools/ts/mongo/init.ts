@@ -4,7 +4,7 @@ import { finalize, forkJoin, from, map, of, switchMap } from 'rxjs';
 
 import { createCollections } from './collections';
 import { operators } from './operators';
-import { createUsers } from './users';
+import { createAdminDbUsers, createAppDbUsers } from './users';
 
 /**
  * Load environment variables.
@@ -25,9 +25,14 @@ if (typeof uri === 'undefined') {
 }
 
 /**
- * Database name.
+ * Administrative database name.
  */
 const dbName = process.env.DB_NAME;
+
+/**
+ * Application database name.
+ */
+const appDbName = process.env.APP_DB_NAME;
 
 if (typeof dbName === 'undefined') {
   const error = new Error(
@@ -45,17 +50,21 @@ const ssl = !uri.includes('127.0.0.1');
 void of(new MongoClient(uri, { ssl, keepAlive: true }))
   .pipe(
     switchMap(client => client.connect()),
-    map(client => ({ client, db: client.db(dbName) })),
-    switchMap(({ client, db }) =>
-      from(db.command({ ping: 1 })).pipe(
+    map(client => ({ client, adminDb: client.db(dbName), appDb: client.db(appDbName) })),
+    switchMap(({ client, adminDb, appDb }) =>
+      from(adminDb.command({ ping: 1 })).pipe(
         map(result => {
           operators.logResult(result, 'Connection check');
-          return { client, db };
+          return { client, adminDb, appDb };
         }),
       ),
     ),
-    switchMap(({ client, db }) =>
-      forkJoin([createUsers(db), createCollections(db)]).pipe(finalize(() => client.close())),
+    switchMap(({ client, adminDb, appDb }) =>
+      forkJoin([
+        createAdminDbUsers(adminDb),
+        createAppDbUsers(appDb),
+        createCollections(appDb),
+      ]).pipe(finalize(() => client.close())),
     ),
   )
   .subscribe();
