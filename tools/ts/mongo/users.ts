@@ -8,7 +8,7 @@ import { operators } from './operators';
  * @param db the administrative database reference
  * @returns execution stream
  */
-export const createAdminDbUsers = (db: Db) => {
+const createAdminDbUsers = (db: Db) => {
   const user$ = from(
     db.addUser('user', 'password', {
       roles: [{ role: 'readWrite', db: 'portal' }],
@@ -27,7 +27,7 @@ export const createAdminDbUsers = (db: Db) => {
  * @param db the application database reference
  * @returns execution stream
  */
-export const createAppDbUsers = (db: Db) => {
+const createAppDbUsers = (db: Db) => {
   const user$ = from(
     db.addUser('user', 'password', {
       roles: [{ role: 'readWrite', db: 'portal' }],
@@ -39,4 +39,12 @@ export const createAppDbUsers = (db: Db) => {
     }),
   ).pipe(operators.processStreamError());
   return concat(user$, admin$);
+};
+
+/**
+ * The database user factories.
+ */
+export const users = {
+  createAdminDbUsers,
+  createAppDbUsers,
 };

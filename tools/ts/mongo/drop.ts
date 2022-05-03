@@ -1,10 +1,9 @@
 import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
-import { finalize, forkJoin, from, map, of, switchMap } from 'rxjs';
+import { finalize, from, map, of, switchMap } from 'rxjs';
 
 import { collections } from './collections';
 import { operators } from './operators';
-import { users } from './users';
 
 /**
  * Load environment variables.
@@ -63,16 +62,12 @@ void of(new MongoClient(uri, { ssl, keepAlive: true }))
       from(adminDb.command({ ping: 1 })).pipe(
         map(result => {
           operators.logResult(result, 'Connection check');
-          return { client, adminDb, appDb };
+          return { client, appDb };
         }),
       ),
     ),
-    switchMap(({ client, adminDb, appDb }) =>
-      forkJoin([
-        users.createAdminDbUsers(adminDb),
-        users.createAppDbUsers(appDb),
-        collections.createCollections(appDb),
-      ]).pipe(finalize(() => client.close())),
+    switchMap(({ client, appDb }) =>
+      collections.dropCollections(appDb).pipe(finalize(() => client.close())),
     ),
   )
   .subscribe();
