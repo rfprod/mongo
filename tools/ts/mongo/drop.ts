@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
-import { MongoClient } from 'mongodb';
+import { MongoClient, MongoClientOptions } from 'mongodb';
 import { finalize, from, map, of, switchMap } from 'rxjs';
 
+import { logger } from '../utils/logger';
 import { collections } from './collections';
-import { operators } from './operators';
 
 /**
  * Load environment variables.
@@ -19,7 +19,7 @@ if (typeof uri === 'undefined') {
   const error = new Error(
     'Please verify the .env file in the project root has the DB_CONNECTION_STRING variable set.',
   );
-  operators.processError(error);
+  logger.printError(error);
   process.exit(1);
 }
 
@@ -32,7 +32,7 @@ if (typeof dbName === 'undefined') {
   const error = new Error(
     'Please verify the .env file in the project root has the DB_NAME variable set.',
   );
-  operators.processError(error);
+  logger.printError(error);
   process.exit(1);
 }
 
@@ -45,7 +45,7 @@ if (typeof appDbName === 'undefined') {
   const error = new Error(
     'Please verify the .env file in the project root has the APP_DB_NAME variable set.',
   );
-  operators.processError(error);
+  logger.printError(error);
   process.exit(1);
 }
 
@@ -54,14 +54,21 @@ if (typeof appDbName === 'undefined') {
  */
 const ssl = !uri.includes('127.0.0.1');
 
-void of(new MongoClient(uri, { ssl, keepAlive: true }))
+/**
+ * Mongo client options.
+ */
+const options: MongoClientOptions = { ssl, keepAlive: true };
+
+logger.printInfo({ uri, ...options }, 'Creating Mongo client with the following options');
+
+void of(new MongoClient(uri, options))
   .pipe(
     switchMap(client => client.connect()),
     map(client => ({ client, adminDb: client.db(dbName), appDb: client.db(appDbName) })),
     switchMap(({ client, adminDb, appDb }) =>
       from(adminDb.command({ ping: 1 })).pipe(
         map(result => {
-          operators.logResult(result, 'Connection check');
+          logger.printSuccess(result, 'Connection check');
           return { client, appDb };
         }),
       ),

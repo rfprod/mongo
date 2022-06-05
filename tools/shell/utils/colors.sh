@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##
-# Colors definitions.
+# Color definitions.
 #
 # Black        0;30     Dark Gray     1;30
 # Red          0;31     Light Red     1;31
@@ -98,7 +98,7 @@ reportSupportedColors() {
 }
 
 ##
-# Colors usage.
+# Print usage.
 ##
 if [ "$1" = "?" ]; then
   reportSupportedColors
