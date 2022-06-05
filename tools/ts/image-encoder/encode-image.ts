@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import yargs from 'yargs';
 
 import { IArgs, parseArgs } from '../utils/args';
-import { dryRun, writeData } from '../utils/file';
+import { executeCommand, writeData } from '../utils/file';
 
 /**
  * @name cwd
@@ -39,4 +39,4 @@ function encodeBase64(filePath: string) {
 
 const base64 = encodeBase64(`${cwd}/data/input.png`);
 
-dryRun(args.dryRun, () => writeData(`${cwd}/data/output.json`, JSON.stringify({ base64 })));
+executeCommand(args.dryRun, () => writeData(`${cwd}/data/output.json`, JSON.stringify({ base64 })));
