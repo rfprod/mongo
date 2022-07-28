@@ -1,6 +1,6 @@
 {
   "name": "mongo-images",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "private": true,
   "description": "MongoDB docker container image with automation utilities.",
   "bugs": "https://github.com/rfprod/mongo/issues",
@@ -41,20 +41,20 @@
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
-    "@types/node": "18.0.4",
-    "@typescript-eslint/eslint-plugin": "5.30.6",
-    "@typescript-eslint/parser": "5.30.6",
-    "commitizen": "4.2.4",
+    "@types/node": "18.6.2",
+    "@typescript-eslint/eslint-plugin": "5.31.0",
+    "@typescript-eslint/parser": "5.31.0",
+    "commitizen": "4.2.5",
     "dotenv": "16.0.1",
-    "eslint": "8.19.0",
+    "eslint": "8.20.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-rxjs": "5.0.2",
     "eslint-plugin-simple-import-sort": "7.0.0",
-    "eslint-plugin-unicorn": "43.0.1",
+    "eslint-plugin-unicorn": "43.0.2",
     "husky": "8.0.1",
-    "mongodb": "4.8.0",
+    "mongodb": "4.8.1",
     "prettier": "2.7.1",
     "rxjs": "7.5.6",
     "sort-json": "2.0.1",
@@ -64,7 +64,7 @@
     "typescript": "4.7.4"
   },
   "engines": {
-    "node": ">=16.15.0",
-    "npm": ">=8.8.0"
+    "node": ">=16.16.0",
+    "npm": ">=8.15.0"
   }
 }
