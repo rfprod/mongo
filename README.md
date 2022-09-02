@@ -31,7 +31,7 @@ In order to run own copy of the project one must fulfill the following requireme
     ```bash
     yarn install:shellcheck:linux && yarn install
     ```
-- :no_entry_sign: [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) - `should work, but no guarantees`
+- 🤷 [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) - `should work, but no guarantees`
   - one will have to figure out oneself how to set up the dev environment;
   - one will have to install MongoDB oneself;
   - given that the dev environment is set up, the following commands should be used to install `shellcheck` via PowerShell;
