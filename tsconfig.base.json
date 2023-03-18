@@ -25,7 +25,6 @@
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "target": "ES6",
     "typeRoots": ["node_modules/@types"]
   },
