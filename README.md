@@ -8,7 +8,7 @@ MongoDB docker container image with automation utilities.
 
 | Info                                                       | Trigger                            | Badge                                                                                                                                                                        |
 | ---------------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [:information_source:](# 'Quality gates.')                 | PR open event (destination: trunk) | [![pr-validation](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/pr-validation.yml)       |
+| [:information_source:](# 'Quality gates.')                 | PR open event (destination: trunk) | [![validate-pr](https://github.com/rfprod/mongo/actions/workflows/validate-pr.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/validate-pr.yml)             |
 | [:information_source:](# 'Source code security scanning.') | CodeQL analysis                    | [![codeql-analysis](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/rfprod/mongo/actions/workflows/codeql-analysis.yml) |
 
 ## Requirements

@@ -1,4 +1,4 @@
-name: pr-validation
+name: validate-pr
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ defaults:
     shell: bash
 
 concurrency:
-  group: ${{ github.head_ref }}.${{ github.sha }}.pr-validation
+  group: ${{ github.head_ref }}.${{ github.sha }}.validate-pr
   cancel-in-progress: true
 
 jobs:
@@ -58,6 +58,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Validate the commit messages
+        if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
         run: |
           git checkout -b premerge
           git fetch origin main:main
