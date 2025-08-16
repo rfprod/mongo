@@ -1,4 +1,4 @@
-import { Db } from 'mongodb';
+import type { Db } from 'mongodb';
 import { concat, from } from 'rxjs';
 
 import { operators } from './operators';

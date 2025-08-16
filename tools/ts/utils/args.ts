@@ -11,7 +11,7 @@ export const parseArgs = () => {
     help: false,
   };
 
-  args.dryRun = <boolean>yargs.argv['dry-run'] ?? <boolean>yargs.argv['dr'];
-  args.help = <boolean>yargs.argv['help'] ?? <boolean>yargs.argv['h'];
+  args.dryRun = (yargs.argv['dry-run'] as boolean) ?? (yargs.argv['dr'] as boolean);
+  args.help = (yargs.argv['help'] as boolean) ?? (yargs.argv['h'] as boolean);
   return args;
 };

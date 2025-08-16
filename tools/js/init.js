@@ -1,8 +1,12 @@
+/* global Mongo -- This is defined globally by the MongoDB shell. */
+
 /**
  * This function initializes database with two user records and two collections.
  */
 (async function () {
-  // eslint-disable-next-line no-undef -- this script has global context because it is executed in mongo shell
+  if (typeof Mongo === 'undefined') {
+    throw new Error('Mongo is undefined.');
+  }
   const mongoClient = new Mongo();
 
   const adminDb = mongoClient.getDB('admin');

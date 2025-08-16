@@ -1,8 +1,8 @@
-import { Db } from 'mongodb';
+import type { Db } from 'mongodb';
 import { combineLatest, concat, concatMap, from, map, of, switchMap } from 'rxjs';
 
 import { operators } from './operators';
-import { TCollectionOptions, validators } from './validators';
+import { type TCollectionOptions, validators } from './validators';
 
 /**
  * Checks if the database collection exists.
@@ -51,8 +51,8 @@ const createCollectionOne = (
   secondIndex = 'date-index',
 ) =>
   collectionExists(db, collection).pipe(
-    switchMap(exists =>
-      !exists
+    switchMap(exists => {
+      return !exists
         ? createCollection(
             db,
             collection,
@@ -66,8 +66,8 @@ const createCollectionOne = (
             ),
             operators.processStreamError(),
           )
-        : of(null),
-    ),
+        : of(null);
+    }),
   );
 
 /**
@@ -85,8 +85,8 @@ const createCollectionTwo = (
   secondIndex = 'date-index',
 ) =>
   collectionExists(db, collection).pipe(
-    switchMap(exists =>
-      !exists
+    switchMap(exists => {
+      return !exists
         ? createCollection(
             db,
             collection,
@@ -100,8 +100,8 @@ const createCollectionTwo = (
             ),
             operators.processStreamError(),
           )
-        : of(null),
-    ),
+        : of(null);
+    }),
   );
 
 /**
