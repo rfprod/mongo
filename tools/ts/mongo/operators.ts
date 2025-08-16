@@ -1,4 +1,4 @@
-import { MongoServerError } from 'mongodb';
+import type { MongoServerError } from 'mongodb';
 import { catchError, of, tap } from 'rxjs';
 
 import { logger } from '../utils/logger';

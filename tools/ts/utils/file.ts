@@ -16,7 +16,7 @@ export const writeData = async (targetPath: string, fileContent: string) => {
     await writeFile(targetPath, fileContent);
     logger.printSuccess(`Output generated at ${targetPath}`);
   } catch (error) {
-    logger.printError(<NodeJS.ErrnoException>error);
+    logger.printError(error as NodeJS.ErrnoException);
     process.exit(1);
   }
 };

@@ -27,7 +27,7 @@ interface IPackageJson {
  * Prints arguments usage tip if no applicable arguments were used.
  */
 function printSearchArgumentTip() {
-  const search = (<Record<string, string>>argv).search;
+  const search = (argv as Record<string, string>).search;
   if (typeof search !== 'string') {
     // eslint-disable-next-line no-console -- needed here to print output in the terminal
     console.log(
@@ -46,7 +46,7 @@ ${COLORS.CYAN}%s${COLORS.DEFAULT} ${COLORS.YELLOW}%s${COLORS.DEFAULT}\n`,
  * @param scripts package scripts object.
  */
 function printPackageScripts(scripts: IPackageJson['scripts'], cli: 'yarn' | 'ng') {
-  const search = (<Record<string, string>>argv).search;
+  const search = (argv as Record<string, string>).search;
   const scriptKeys =
     typeof search !== 'string'
       ? Object.keys(scripts)

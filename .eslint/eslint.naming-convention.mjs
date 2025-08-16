@@ -2,7 +2,7 @@
  * TypeScript Eslint naming convention configuration generator.
  * @returns @typescript-eslint/naming-convention configuration
  */
-const namingConventionConfig = () => ({
+export const namingConventionConfig = () => ({
   '@typescript-eslint/naming-convention': [
     'error', // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
     {
@@ -93,5 +93,3 @@ const namingConventionConfig = () => ({
     },
   ],
 });
-
-exports.namingConventionConfig = namingConventionConfig;

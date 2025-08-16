@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { MongoClient, MongoClientOptions } from 'mongodb';
+import { MongoClient, type MongoClientOptions } from 'mongodb';
 import { finalize, from, map, of, switchMap } from 'rxjs';
 
 import { logger } from '../utils/logger';
@@ -57,7 +57,7 @@ const ssl = !uri.includes('127.0.0.1');
 /**
  * Mongo client options.
  */
-const options: MongoClientOptions = { ssl, keepAlive: true };
+const options: MongoClientOptions = { ssl };
 
 logger.printInfo({ uri, ...options }, 'Creating Mongo client with the following options');
 

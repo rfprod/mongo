@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import yargs from 'yargs';
 
-import { IArgs, parseArgs } from '../utils/args';
+import { type IArgs, parseArgs } from '../utils/args';
 import { executeCommand, writeData } from '../utils/file';
 
 /**
