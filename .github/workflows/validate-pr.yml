@@ -54,8 +54,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           check-latest: true
 
+      - name: Configure yarn
+        uses: ./.github/actions/configure-yarn
+
       - name: Install project dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Validate the commit messages
         if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
