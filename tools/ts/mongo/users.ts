@@ -10,12 +10,16 @@ import { operators } from './operators';
  */
 const createAdminDbUsers = (db: Db) => {
   const user$ = from(
-    db.addUser('user', 'password', {
+    db.command({
+      createUser: 'user',
+      pwd: 'password',
       roles: [{ role: 'readWrite', db: 'portal' }],
     }),
   ).pipe(operators.processStreamError());
   const admin$ = from(
-    db.addUser('admin', 'password', {
+    db.command({
+      createUser: 'admin',
+      pwd: 'password',
       roles: ['userAdminAnyDatabase', 'dbAdminAnyDatabase', 'readWriteAnyDatabase'],
     }),
   ).pipe(operators.processStreamError());
@@ -29,12 +33,16 @@ const createAdminDbUsers = (db: Db) => {
  */
 const createAppDbUsers = (db: Db) => {
   const user$ = from(
-    db.addUser('user', 'password', {
+    db.command({
+      createUser: 'user',
+      pwd: 'password',
       roles: [{ role: 'readWrite', db: 'portal' }],
     }),
   ).pipe(operators.processStreamError());
   const admin$ = from(
-    db.addUser('admin', 'password', {
+    db.command({
+      createUser: 'admin',
+      pwd: 'password',
       roles: [{ role: 'readWrite', db: 'portal' }],
     }),
   ).pipe(operators.processStreamError());

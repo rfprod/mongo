@@ -1,4 +1,4 @@
 {
-  "reject": [],
+  "reject": ["eslint", "eslint-plugin-unicorn"],
   "timeout": 60000
 }

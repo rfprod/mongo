@@ -11,7 +11,12 @@ export const parseArgs = () => {
     help: false,
   };
 
-  args.dryRun = (yargs.argv['dry-run'] as boolean) ?? (yargs.argv['dr'] as boolean);
-  args.help = (yargs.argv['help'] as boolean) ?? (yargs.argv['h'] as boolean);
+  const parsed = yargs()
+    .option('dry-run', { alias: 'dr', type: 'boolean' })
+    .option('help', { alias: 'h', type: 'boolean' })
+    .parseSync();
+
+  args.dryRun = parsed.dryRun;
+  args.help = parsed.help;
   return args;
 };
