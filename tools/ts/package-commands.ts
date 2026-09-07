@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { argv } from 'yargs';
+import yargs from 'yargs';
 
 import { COLORS } from './utils/colors';
 
@@ -27,7 +27,7 @@ interface IPackageJson {
  * Prints arguments usage tip if no applicable arguments were used.
  */
 function printSearchArgumentTip() {
-  const search = (argv as Record<string, string>).search;
+  const search = yargs().option('search', { alias: 's', type: 'string' }).parseSync().search;
   if (typeof search !== 'string') {
     // eslint-disable-next-line no-console -- needed here to print output in the terminal
     console.log(
@@ -46,7 +46,7 @@ ${COLORS.CYAN}%s${COLORS.DEFAULT} ${COLORS.YELLOW}%s${COLORS.DEFAULT}\n`,
  * @param scripts package scripts object.
  */
 function printPackageScripts(scripts: IPackageJson['scripts'], cli: 'yarn' | 'ng') {
-  const search = (argv as Record<string, string>).search;
+  const search = yargs().option('search', { alias: 's', type: 'string' }).parseSync().search;
   const scriptKeys =
     typeof search !== 'string'
       ? Object.keys(scripts)

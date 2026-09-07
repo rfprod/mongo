@@ -67,8 +67,7 @@ const collectionTwoValidator = () => ({
 });
 
 type TCollectionValidator =
-  | ReturnType<typeof collectionOneValidator>
-  | ReturnType<typeof collectionTwoValidator>;
+  ReturnType<typeof collectionOneValidator> | ReturnType<typeof collectionTwoValidator>;
 
 /**
  * Create collection options constructor.
