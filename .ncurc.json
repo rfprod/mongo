@@ -1,4 +1,9 @@
 {
-  "reject": ["eslint", "eslint-plugin-unicorn"],
+  "reject": [
+    "eslint",
+    "@eslint/js",
+    "eslint-plugin-unicorn",
+    "typescript"
+  ],
   "timeout": 60000
 }
